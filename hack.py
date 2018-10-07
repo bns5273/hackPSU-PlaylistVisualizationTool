@@ -1,8 +1,7 @@
 
+import sys
 import spotipy
 import spotipy.util as util
-from spotipy.oauth2 import SpotifyClientCredentials
-import json
 import datetime
 import plotly.plotly as py
 import plotly.graph_objs as go
@@ -10,7 +9,8 @@ import plotly.figure_factory as ff
 
 
 if __name__ == '__main__':
-    username = 'dbc23910'
+    username = sys.argv[1]
+    # username = 'dbc23910'
     scope = 'user-library-read'
 
     # array of dicts of arrays??
@@ -64,15 +64,15 @@ for g, name in zip(graphs, names):
     ))
 
 
-era_pref = []
+era_pref_scatter = []
 for g, name in zip(graphs, names):
-    era_pref.append(go.Histogram(
+    era_pref_scatter.append(go.Histogram(
         x=g['release_dates'],
         name=name,
         text=g['names']
     ))
-era_pref_fig = go.Figure(
-    data=era_pref,
+era_pref_scatter_fig = go.Figure(
+    data=era_pref_scatter,
     layout=go.Layout(
         barmode='stack',
         xaxis=dict(
@@ -102,6 +102,26 @@ duration_pref_fig = go.Figure(
         )
     ))
 
+pop_pref = []
+for g, name in zip(graphs, names):
+    pop_pref.append(go.Histogram(
+        x=g['pops'],
+        name=name,
+        text=g['names']
+    ))
+pop_pref_fig = go.Figure(
+    data=pop_pref,
+    layout=go.Layout(
+        barmode='stack',
+        xaxis=dict(
+            title='Popularity'
+        ),
+        yaxis=dict(
+            title='Commonality'
+        )
+    ))
+
+
 # explicitness = []
 # for g, name in zip(graphs, names):
 #     explicitness.append(ff.create_distplot(
@@ -109,13 +129,14 @@ duration_pref_fig = go.Figure(
 #         g['explicits'],
 #         show_hist=False,
 #         show_rug=False
-# #     ))
+#       ))
 # explicitness = ff.create_distplot(
 #         graphs[1]['added_dates'],
 #         graphs[1]['explicits'],
 # )
 
-# py.plot(adding_activity, filename='hackPSU-basicness')
-# py.plot(era_pref_fig, filename='hackPSU-musicEra')
-# py.plot(duration_pref_fig, filename='hackPSU-musicDuration')
+py.plot(adding_activity, filename='hackPSU-basicness')
+py.plot(era_pref_scatter_fig, filename='hackPSU-musicEra_scatter')
+py.plot(duration_pref_fig, filename='hackPSU-musicDuration')
+py.plot(pop_pref_fig, filename='hackPSU-musicEria')
 # py.plot(explicitness, filename='hackPSU-explicitness')
