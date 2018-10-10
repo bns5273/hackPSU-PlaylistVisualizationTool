@@ -1,4 +1,11 @@
 
+# TODO
+# saved tracks and most recently played tracks can be accessed as well
+# genre preferences from ( get several artists) / (get several album )
+# audio analysis / features
+# use recommendation service
+
+
 import sys
 import spotipy
 import spotipy.util as util
