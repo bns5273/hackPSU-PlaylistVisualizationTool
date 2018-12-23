@@ -19,6 +19,7 @@ if __name__ == '__main__':
     # username = 'noacolvin'
     # username = 'spevacus'
     username = '12121378058'
+    # username = 'tspangles'
 
     scope = 'user-library-read'
     client_id = 'b838401b0db04a85933513f481841e98'
@@ -83,7 +84,7 @@ plt.ylabel('Occ.')
 plt.show()
 
 plt.figure()
-plt.scatter(graphs[9]['added_dates'], graphs[9]['release_dates'])
+plt.scatter(graphs[8]['added_dates'], graphs[8]['release_dates'])
 plt.xlabel('Added Date')
 plt.xticks(rotation=50)
 plt.ylabel('Release Date')
